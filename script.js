@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const listContainer = document.getElementById("starred-list");
 
+  // Verificamos por seguridad si el contenedor existe en el HTML
+  if (!listContainer) {
+    console.error("No se encontró el elemento con id 'starred-list' en el HTML.");
+    return;
+  }
+
   try {
     const response = await fetch("events.json");
     const repositories = await response.json();
@@ -10,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     repositories.forEach(repo => {
       const li = document.createElement("li");
       
-      // Usamos repo.name para que coincida con el JSON y no salga 'undefined'
       li.innerHTML = `
         <strong>${repo.name}</strong> 
         <br><small>Starred on: ${repo.starred}</small>
