@@ -1,42 +1,26 @@
-fetch("./events.json")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("No se pudo cargar events.json");
-        }
-        return response.json();
-    })
-    .then(repositorios => {
+document.addEventListener("DOMContentLoaded", async () => {
+  const listContainer = document.getElementById("starred-list");
 
-        const contenedor = document.getElementById("repositorios");
-        const buscador = document.getElementById("buscador");
+  try {
+    const response = await fetch("events.json");
+    const repositories = await response.json();
 
-        function mostrarRepositorios(lista) {
-            contenedor.innerHTML = "";
+    listContainer.innerHTML = "";
 
-            lista.forEach(repo => {
-                const tarjeta = document.createElement("div");
-                tarjeta.className = "tarjeta";
-
-                tarjeta.innerHTML = `
-                    <h2>${repo.name}</h2>
-                    <p>${repo.description}</p>
-                    <a href="${repo.url}" target="_blank">View repository</a>
-                `;
-
-                contenedor.appendChild(tarjeta);
-            });
-        }
-
-        mostrarRepositorios(repositorios);
-
-        buscador.addEventListener("input", () => {
-            const texto = buscador.value.toLowerCase();
-
-            const filtrados = repositorios.filter(repo =>
-                repo.name.toLowerCase().includes(texto)
-            );
-
-            mostrarRepositorios(filtrados);
-        });
-    })
-    .catch(error => console.error(error));
+    repositories.forEach(repo => {
+      const li = document.createElement("li");
+      
+      // Usamos repo.name para que coincida con el JSON y no salga 'undefined'
+      li.innerHTML = `
+        <strong>${repo.name}</strong> 
+        <br><small>Starred on: ${repo.starred}</small>
+        <br><a href="https://github.com/${repo.name}" target="_blank">Ver repositorio</a>
+      `;
+      
+      listContainer.appendChild(li);
+    });
+  } catch (error) {
+    console.error("Error al cargar los repositorios:", error);
+    listContainer.innerHTML = "<li>Error al cargar los datos.</li>";
+  }
+});
