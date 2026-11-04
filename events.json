@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Linux",
+        "url": "https://github.com/torvalds/linux",
+        "description": "Linux kernel source code."
+    },
+    {
+        "name": "VS Code",
+        "url": "https://github.com/microsoft/vscode",
+        "description": "Visual Studio Code editor."
+    },
+    {
+        "name": "Python",
+        "url": "https://github.com/python/cpython",
+        "description": "Python programming language."
+    }
+]
