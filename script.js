@@ -14,9 +14,11 @@ fetch("events.json")
                 tarjeta.className = "tarjeta";
 
                 tarjeta.innerHTML = `
-                    <h2>${repo.nombre}</h2>
-                    <p>${repo.descripcion}</p>
-                    <a href="${repo.url}" target="_blank">Ver repositorio</a>
+                    <h2>${repo.name}</h2>
+                    <p>${repo.description}</p>
+                    <a href="${repo.url}" target="_blank">
+                        View repository
+                    </a>
                 `;
 
                 contenedor.appendChild(tarjeta);
@@ -29,7 +31,7 @@ fetch("events.json")
             const texto = buscador.value.toLowerCase();
 
             const filtrados = repositorios.filter(repo =>
-                repo.nombre.toLowerCase().includes(texto)
+                repo.name.toLowerCase().includes(texto)
             );
 
             mostrarRepositorios(filtrados);
@@ -37,5 +39,5 @@ fetch("events.json")
 
     })
     .catch(error => {
-        console.error("Error al cargar los repositorios:", error);
+        console.error("Error loading repositories:", error);
     });
