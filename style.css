@@ -1,37 +1,14 @@
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
-    color: #24292f;
+  font-family: sans-serif;
+  margin: 2rem;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    max-width: 700px;
-    margin: 20px auto;
+  list-style: none;
+  padding: 0;
 }
 
 li {
-    background-color: white;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-}
-
-a {
-    color: #0969da;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
 }
