@@ -1,5 +1,10 @@
-fetch("events.json")
-    .then(response => response.json())
+fetch("./events.json")
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("No se pudo cargar events.json");
+        }
+        return response.json();
+    })
     .then(repositorios => {
 
         const contenedor = document.getElementById("repositorios");
@@ -10,15 +15,12 @@ fetch("events.json")
 
             lista.forEach(repo => {
                 const tarjeta = document.createElement("div");
-
                 tarjeta.className = "tarjeta";
 
                 tarjeta.innerHTML = `
                     <h2>${repo.name}</h2>
                     <p>${repo.description}</p>
-                    <a href="${repo.url}" target="_blank">
-                        View repository
-                    </a>
+                    <a href="${repo.url}" target="_blank">View repository</a>
                 `;
 
                 contenedor.appendChild(tarjeta);
@@ -36,8 +38,5 @@ fetch("events.json")
 
             mostrarRepositorios(filtrados);
         });
-
     })
-    .catch(error => {
-        console.error("Error loading repositories:", error);
-    });
+    .catch(error => console.error(error));
